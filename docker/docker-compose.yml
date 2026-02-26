@@ -1,0 +1,26 @@
+services:
+  mysql:
+    image: mysql:9.6.0
+    container_name: car-dealer-mysql
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: car_dealer
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin123
+    volumes:
+      - ./data/mysql_data:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d
+
+  sftp:
+    image: atmoz/sftp:alpine
+    container_name: car-dealer-sftp
+    ports:
+      - "2222:22"
+    command: batch:batch123:::.
+    volumes:
+      - ./data/aurora/filiais:/home/batch/filiais
+      - ./data/aurora/filiais/processados:/home/batch/filiais/processados
+      - ./data/aurora/matriz:/home/batch/matriz
