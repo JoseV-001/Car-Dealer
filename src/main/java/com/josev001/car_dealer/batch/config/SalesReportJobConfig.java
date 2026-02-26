@@ -17,13 +17,23 @@ import org.springframework.transaction.PlatformTransactionManager;
 @Configuration
 public class SalesReportJobConfig {
 
+    // Define o job principal do batch.
     @Bean
-    public Job salesReportJob(JobRepository jobRepository, Step salesReportStep) {
+    public Job salesReportJob(JobRepository jobRepository,
+                              Step salesReportStep,
+                              InputFilesDecider inputFilesDecider,
+                              SalesReportSftpJobListener salesReportSftpJobListener) {
         return new JobBuilder("salesReportJob", jobRepository)
-                .start(salesReportStep)
+                .listener(salesReportSftpJobListener)
+                .start(inputFilesDecider)
+                .on(InputFilesDecider.NO_INPUT).end(InputFilesDecider.NO_INPUT)
+                .from(inputFilesDecider)
+                .on("*").to(salesReportStep)
+                .end()
                 .build();
     }
 
+    // Monta o step com reader, processor, writer e transacao.
     @Bean
     public Step salesReportStep(JobRepository jobRepository,
                                 PlatformTransactionManager transactionManager,
