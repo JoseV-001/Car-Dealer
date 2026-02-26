@@ -1,4 +1,3 @@
-Copiar
 INSERT INTO dealers (dealer_id, dealer_name) VALUES
 ('D001', 'Aurora Prime Paulista'),
 ('D002', 'Aurora Rio Mar'),

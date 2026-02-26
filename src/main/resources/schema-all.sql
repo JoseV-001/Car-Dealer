@@ -1,4 +1,3 @@
-Copiar
 DROP TABLE IF EXISTS dealers;
 
 CREATE TABLE dealers (
