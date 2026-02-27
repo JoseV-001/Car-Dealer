@@ -1,7 +1,9 @@
-package com.josev001.car_dealer.config;
+package com.josev001.car_dealer.batch.config;
 
-import com.josev001.car_dealer.domain.SaleRecord;
-import com.josev001.car_dealer.writer.SalesReportWriter;
+import com.josev001.car_dealer.batch.decider.InputFilesDecider;
+import com.josev001.car_dealer.batch.domain.SaleRecord;
+import com.josev001.car_dealer.batch.listener.SalesReportSftpJobListener;
+import com.josev001.car_dealer.batch.writer.SalesReportWriter;
 import org.springframework.batch.core.job.Job;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.repository.JobRepository;

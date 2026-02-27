@@ -1,4 +1,13 @@
-package br.com.devsuperior.car_dealer.integration;
+package com.josev001.car_dealer.integration;
+
+import net.schmizz.sshj.SSHClient;
+import net.schmizz.sshj.sftp.RemoteResourceInfo;
+import net.schmizz.sshj.sftp.SFTPClient;
+import net.schmizz.sshj.xfer.FileSystemFile;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,14 +18,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
-import net.schmizz.sshj.SSHClient;
-import net.schmizz.sshj.sftp.RemoteResourceInfo;
-import net.schmizz.sshj.sftp.SFTPClient;
-import net.schmizz.sshj.xfer.FileSystemFile;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
 @Service
 public class SftpUploadService {
@@ -64,7 +65,7 @@ public class SftpUploadService {
         }
 
         try (SSHClient sshClient = sftpConfig.setupSshClient();
-                SFTPClient sftpClient = sshClient.newSFTPClient()) {
+             SFTPClient sftpClient = sshClient.newSFTPClient()) {
             ensureRemoteDirectoryExists(sftpClient, remoteProcessedDir);
 
             uploadSingleMatrizFile(sftpClient, uploadDir, matrizReportPath);

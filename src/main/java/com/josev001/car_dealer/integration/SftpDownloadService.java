@@ -1,11 +1,5 @@
-package br.com.devsuperior.car_dealer.integration;
+package com.josev001.car_dealer.integration;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.List;
 import net.schmizz.sshj.SSHClient;
 import net.schmizz.sshj.sftp.RemoteResourceInfo;
 import net.schmizz.sshj.sftp.SFTPClient;
@@ -14,6 +8,13 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class SftpDownloadService {
@@ -46,7 +47,7 @@ public class SftpDownloadService {
         int downloadedFilesCount = 0;
 
         try (SSHClient sshClient = sftpConfig.setupSshClient();
-                SFTPClient sftpClient = sshClient.newSFTPClient()) {
+             SFTPClient sftpClient = sshClient.newSFTPClient()) {
 
             List<RemoteResourceInfo> files = sftpClient.ls(remoteDownloadDir);
             for (RemoteResourceInfo file : files) {

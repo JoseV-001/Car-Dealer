@@ -1,4 +1,4 @@
-package com.josev001.car_dealer.domain;
+package com.josev001.car_dealer.batch.domain;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

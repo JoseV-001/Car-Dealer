@@ -1,4 +1,5 @@
-package br.com.devsuperior.car_dealer.integration;
+package com.josev001.car_dealer.integration;
+
 
 import net.schmizz.sshj.SSHClient;
 import net.schmizz.sshj.transport.verification.PromiscuousVerifier;

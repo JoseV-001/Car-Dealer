@@ -2,12 +2,15 @@ package com.josev001.car_dealer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
+@EnableScheduling
 @SpringBootApplication
 public class CarDealerApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CarDealerApplication.class, args);
-	}
+    // Inicializa o Spring Boot e dispara o job configurado.
+    public static void main(String[] args) {
+        SpringApplication.run(CarDealerApplication.class, args);
+    }
 
 }

@@ -1,18 +1,7 @@
-package com.josev001.car_dealer.writer;
+package com.josev001.car_dealer.batch.writer;
 
-import com.josev001.car_dealer.domain.ReportLine;
-import com.josev001.car_dealer.domain.SaleRecord;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import com.josev001.car_dealer.batch.domain.ReportLine;
+import com.josev001.car_dealer.batch.domain.SaleRecord;
 import org.springframework.batch.core.ExitStatus;
 import org.springframework.batch.core.listener.StepExecutionListener;
 import org.springframework.batch.core.step.StepExecution;
@@ -21,6 +10,13 @@ import org.springframework.batch.infrastructure.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.*;
 
 @Component
 public class SalesReportWriter implements ItemWriter<SaleRecord>, StepExecutionListener {

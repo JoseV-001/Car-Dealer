@@ -1,8 +1,7 @@
-package com.josev001.car_dealer.processor;
+package com.josev001.car_dealer.batch.processor;
 
 
-
-import com.josev001.car_dealer.domain.SaleRecord;
+import com.josev001.car_dealer.batch.domain.SaleRecord;
 import org.springframework.batch.infrastructure.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
