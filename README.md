@@ -148,5 +148,5 @@ FROM batch.BATCH_JOB_EXECUTION
 ORDER BY CREATE_TIME DESC LIMIT 10;
 
 ```
-
+Autor: José Victor da Silva
 ---
