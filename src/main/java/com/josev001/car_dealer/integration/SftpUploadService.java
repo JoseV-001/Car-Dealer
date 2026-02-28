@@ -99,21 +99,22 @@ public class SftpUploadService {
         }
     }
 
-    // Localiza o arquivo da matriz mais recente com base no nome configurado.
+    // Localiza o arquivo da matriz EXATO conforme configurado.
     private Optional<Path> resolveMatrizFileToUpload(Path uploadDir, Path matrizReportPath) throws IOException {
+        // Verifica se o arquivo exato (sales-report.csv) existe na pasta
+        if (Files.exists(matrizReportPath)) {
+            return Optional.of(matrizReportPath);
+        }
+
+        // Se não existir o exato, ele tenta buscar algum que comece com o nome (caso tenha timestamp)
         String configuredFileName = matrizReportPath.getFileName().toString();
-        int dotIndex = configuredFileName.lastIndexOf('.');
-        String baseName = dotIndex > 0 ? configuredFileName.substring(0, dotIndex) : configuredFileName;
-        String extension = dotIndex > 0 ? configuredFileName.substring(dotIndex) : "";
-        String prefix = baseName + "_";
+        String baseName = configuredFileName.contains(".") ?
+                configuredFileName.substring(0, configuredFileName.lastIndexOf('.')) : configuredFileName;
 
         try (var paths = Files.list(uploadDir)) {
             return paths
                     .filter(Files::isRegularFile)
-                    .filter(path -> {
-                        String name = path.getFileName().toString();
-                        return name.startsWith(prefix) && name.endsWith(extension);
-                    })
+                    .filter(path -> path.getFileName().toString().startsWith(baseName))
                     .max(Comparator.comparing(path -> path.toFile().lastModified()));
         }
     }
